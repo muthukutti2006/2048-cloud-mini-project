@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#faf8ef">
+  <title>2048 — Tile Puzzle</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="game" aria-label="2048 puzzle game">
+    <header class="topbar">
+      <div><h1>2048</h1><p class="subtitle">Join the tiles. Reach 2048.</p></div>
+      <div class="scores"><div class="score-box"><span>SCORE</span><strong id="score">0</strong></div><div class="score-box"><span>BEST</span><strong id="best">0</strong></div></div>
+    </header>
+    <section class="controls"><p>Use your <b>arrow keys</b> or swipe to move the tiles.</p><button id="new-game" type="button">New game</button></section>
+    <section id="board" class="board" role="grid" aria-label="Game board"></section>
+    <div id="message" class="message" role="status" aria-live="polite"></div>
+    <section class="instructions"><b>How to play:</b> Use the arrow keys to slide tiles. When two tiles with the same number touch, they merge into one. Reach <b>2048</b> to win!</section>
+    <footer>Built with HTML, CSS and JavaScript · Containerized with Docker</footer>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>

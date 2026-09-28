@@ -1,0 +1,7 @@
+services:
+  game:
+    build: .
+    image: 2048-puzzle:latest
+    ports:
+      - "8080:8080"
+    restart: unless-stopped

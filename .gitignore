@@ -1,0 +1,6 @@
+# Generated image archives
+*.tar
+
+# Operating system files
+.DS_Store
+Thumbs.db
