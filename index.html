@@ -1,24 +1,89 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#faf8ef">
-  <title>2048 — Tile Puzzle</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2048 — Cloud Computing Mini Project</title>
+  <meta name="description" content="2048 tile-slider game built with HTML, CSS, and vanilla JavaScript." />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <main class="game" aria-label="2048 puzzle game">
-    <header class="topbar">
-      <div><h1>2048</h1><p class="subtitle">Join the tiles. Reach 2048.</p></div>
-      <div class="scores"><div class="score-box"><span>SCORE</span><strong id="score">0</strong></div><div class="score-box"><span>BEST</span><strong id="best">0</strong></div></div>
+
+  <!-- ══════════════════════════════════════
+       ARIA live region — announces moves and
+       state changes to screen readers.
+  ══════════════════════════════════════ -->
+  <div id="status-announce" role="status" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+
+  <main class="page-wrap">
+
+    <!-- ── Header ──────────────────────────── -->
+    <header class="header">
+      <div class="brand">
+        <h1 class="logo" aria-label="2048">2048</h1>
+        <p class="tagline">Cloud Computing Mini Project</p>
+      </div>
+
+      <div class="scores-row" role="group" aria-label="Scores">
+        <div class="score-card" aria-label="Current score">
+          <span class="score-label">SCORE</span>
+          <span class="score-value" id="score-display">0</span>
+          <!-- +N popup mounts here dynamically -->
+        </div>
+        <div class="score-card" aria-label="Best score">
+          <span class="score-label">BEST</span>
+          <span class="score-value" id="best-display">0</span>
+        </div>
+      </div>
     </header>
-    <section class="controls"><p>Use your <b>arrow keys</b> or swipe to move the tiles.</p><button id="new-game" type="button">New game</button></section>
-    <section id="board" class="board" role="grid" aria-label="Game board"></section>
-    <div id="message" class="message" role="status" aria-live="polite"></div>
-    <section class="instructions"><b>How to play:</b> Use the arrow keys to slide tiles. When two tiles with the same number touch, they merge into one. Reach <b>2048</b> to win!</section>
-    <footer>Built with HTML, CSS and JavaScript · Containerized with Docker</footer>
+
+    <!-- ── Controls ─────────────────────────── -->
+    <section class="controls-bar" aria-label="Game controls">
+      <p class="hint-text">Use arrow keys, WASD, or swipe to play.</p>
+      <button id="btn-new" type="button" aria-label="Start a new game">New Game</button>
+    </section>
+
+    <!-- ── Board wrapper ────────────────────── -->
+    <div class="board-wrap" role="region" aria-label="Game board">
+
+      <!-- Overlay shown on win or game-over -->
+      <div class="overlay hidden" id="overlay" aria-live="assertive" aria-atomic="true">
+        <div class="overlay-inner">
+          <p class="overlay-msg" id="overlay-msg"></p>
+          <div class="overlay-btns">
+            <button id="btn-keep-playing" type="button" class="hidden">Keep Playing</button>
+            <button id="btn-try-again"    type="button">Try Again</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Static cell backgrounds (16 cells) -->
+      <div class="grid-background" aria-hidden="true">
+        <div class="cell"></div><div class="cell"></div>
+        <div class="cell"></div><div class="cell"></div>
+        <div class="cell"></div><div class="cell"></div>
+        <div class="cell"></div><div class="cell"></div>
+        <div class="cell"></div><div class="cell"></div>
+        <div class="cell"></div><div class="cell"></div>
+        <div class="cell"></div><div class="cell"></div>
+        <div class="cell"></div><div class="cell"></div>
+      </div>
+
+      <!-- Tiles are injected here by game.js -->
+      <div class="tile-container" id="tile-container" aria-label="Tiles" role="grid"></div>
+
+    </div><!-- /board-wrap -->
+
+    <!-- ── Instructions ──────────────────────── -->
+    <section class="instructions" aria-label="How to play">
+      <p><strong>How to play:</strong> Use <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> or
+        <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> to slide tiles.
+        Tiles with the same number <strong>merge</strong> into one. Reach
+        <strong>2048</strong> to win!</p>
+    </section>
+
   </main>
+
   <script src="game.js"></script>
 </body>
 </html>
